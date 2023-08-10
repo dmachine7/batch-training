@@ -4,15 +4,16 @@ import './App.css';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Login from './Components/Login';
 import Dashboard  from './Components/Dashboard';
+import ForgotPassword from './Components/ForgotPassword';
+import Home from './Components/Home';
 
 function App() {
   return (
-    <div>
-      <h1>Online Banking System</h1>
-      {/* <Login /> */}
+    <div className='main'>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/forgotpw" element={<ForgotPassword />} />
       </Routes>
     </div>
   );
