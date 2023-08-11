@@ -43,6 +43,7 @@ const Login = () => {
             </div>
             <div>
                 <Link to="/forgotpw">Forgot password?</Link>
+                <Link to="/signuppw">New User?</Link>
             </div>
         </div>
     )
