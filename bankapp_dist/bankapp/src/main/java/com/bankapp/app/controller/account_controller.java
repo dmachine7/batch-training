@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bankapp.app.model.account_m;
-import com.bankapp.app.model.customer_m;
 import com.bankapp.app.service.account_service;
 
 @RestController
