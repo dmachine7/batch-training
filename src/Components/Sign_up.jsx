@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/Sign_up.css';
+// import '../Styles/Sign_up.css';
 import {
   MDBBtn,
   MDBContainer,

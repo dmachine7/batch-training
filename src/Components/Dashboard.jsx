@@ -1,9 +1,12 @@
+import React, { useState } from "react";
+
 const Dashboard = () => {
-    return (
-        <div>
-            Dashboard Page
-        </div>
-    )
-}
+
+  return (
+    <div>
+      hello from dashboard
+    </div>
+  );
+};
 
 export default Dashboard;
