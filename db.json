@@ -1,0 +1,48 @@
+{
+    "posts": [
+        {
+            "trans_id": 1,
+            "send_acc": 33234554,
+            "rec_acc": 5862540,
+            "trans_type": "fldj",
+            "trans_pass": "fkaldj",
+            "date": "14-8-2023",
+            "amount": 573489,
+            "remarks": "good",
+            "maturity_ins": 12
+        },
+        {
+            "trans_id": 1,
+            "send_acc": 33234554,
+            "rec_acc": 5862540,
+            "trans_type": "fldj",
+            "trans_pass": "fkaldj",
+            "date": "14-8-2023",
+            "amount": 573489,
+            "remarks": "good",
+            "maturity_ins": 12
+        },
+        {
+            "trans_id": 1,
+            "send_acc": 33234554,
+            "rec_acc": 5862540,
+            "trans_type": "fldj",
+            "trans_pass": "fkaldj",
+            "date": "14-8-2023",
+            "amount": 573489,
+            "remarks": "good",
+            "maturity_ins": 12
+        },
+        {
+            "trans_id": 2,
+            "send_acc": 54987,
+            "rec_acc": 35879,
+            "trans_type": "fldj",
+            "trans_pass": "fkvcxm",
+            "date": "24-8-2023",
+            "amount": 8970,
+            "remarks": "nice",
+            "maturity_ins": 23
+        }
+    ]
+}
