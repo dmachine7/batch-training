@@ -13,6 +13,7 @@ import UserDetails from './Components/UserDetails';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import RegisterAccount from './Components/RegisterAccount';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/history" element={<TransactionHistory />} />
         <Route path="/user" element={<UserDetails />} />
         <Route path="/signup" element={<Sign_up />} />
+        <Route path="/registeracc" element={<RegisterAccount />} />
       </Routes>
     </div>
   );
