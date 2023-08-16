@@ -76,7 +76,7 @@ const RegisterAccount = () => {
         console.log(formData.acc_no, details.acc_no);
 
         if (formData.acc_no == details.acc_no) {
-            var requestOptions = 
+            // var requestOptions = 
             console.log("im in")
             fetch("http://localhost:8080/api/account/sendData", {
                 method: "POST",
