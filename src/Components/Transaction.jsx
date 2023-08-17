@@ -23,6 +23,7 @@ const Transaction = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name,value, "filedssssssssss")
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,10 +32,10 @@ const Transaction = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormData((prevData) => ({
-      ...prevData,
-      "type": transactionType,
-    }));
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   "type": transactionType,
+    // }));
 
     console.log(formData);
 
@@ -88,8 +89,8 @@ const Transaction = () => {
             <Card.Title style={{ textAlign: "center", padding: "15px" }}>Register for Internet Banking</Card.Title>
             <Form onSubmit={handleSubmit}>
               <div className="form-group" >
-                <label htmlFor="selectField">Select transaction type :</label>
-                <select
+                {/* <label htmlFor="selectField">Select transaction type :</label> */}
+                {/* <select
                   className="form-control"
                   id="selectField"
                   value={transactionType}
@@ -102,10 +103,19 @@ const Transaction = () => {
                   <option value="IMPS">IMPS</option>
                   <option value="NEFT">NEFT</option>
                   <option value="RTGS">RTGS</option>
-                </select>
+                </select> */}
+                <Form.Group
+                  className="mb-3" controlId="type">
+                  <Form.Label>Select Transaction type </Form.Label>
+                  <Form.Control as="select" name="type" value={formData.type} onChange={handleChange}>
+                  <option value="IMPS">IMPS</option>
+                  <option value="NEFT">NEFT</option>
+                  <option value="RTGS">RTGS</option>
+                  </Form.Control>
+                </Form.Group>
               </div>
 
-              <Col style={{ margin: "10px 10px" }}>
+              <Col style={{ margin: "10px 0px" }}>
                 <Form.Group
                   className="mb-3" controlId="from_acc">
                   <Form.Label>From Account</Form.Label>
@@ -160,7 +170,7 @@ const Transaction = () => {
                 </Form.Group>
               </Col>
 
-              {transactionType == "NEFT" ? "" : (
+              {formData.type == "NEFT" ? "" : (
                 <Col>
                   <Form.Group className="mb-3" controlId="maturity">
                     <Form.Label>Maturity Instructions</Form.Label>

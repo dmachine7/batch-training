@@ -66,7 +66,7 @@ const RegisterAccount = () => {
             headers: { "Content-Type": "application/json" }
         };
 
-        fetch(`http://localhost:8080/api/account/${formData.acc_no}`, requestOptions)
+        fetch(`http://localhost:8080/api/customer/getByAcc/${formData.acc_no}`, requestOptions)
             .then((response) => response.json())
             .then((result) => setDetails(result))
             .catch((error) => console.log("error", error));
