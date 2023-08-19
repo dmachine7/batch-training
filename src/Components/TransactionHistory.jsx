@@ -47,7 +47,7 @@ const TransactionHistory = () => {
             {posts.map((trans, id) => {
               return (
 
-                <tr>
+                <tr key={id}>
                   <td>{trans.trans_id}</td>
                   <td>{trans.send_acc}</td>
                   <td>{trans.rec_acc}</td>
