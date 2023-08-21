@@ -14,7 +14,7 @@ const Transaction = () => {
     date: "",
     maturity: "",
     remark: "",
-
+    trans_pass: ""
   });
 
   const [error, setError] = useState("");
@@ -57,13 +57,14 @@ const Transaction = () => {
 
       //make sure to serialize your JSON body
       body: JSON.stringify({
-        type: formData.type,
-        from_acc: formData.from_acc,
-        to_acc: formData.to_acc,
-        amount: formData.amount,
-        date: formData.date,
-        maturity: formData.maturity,
-        remark: formData.remark,
+        "send_acc":  formData.from_acc, 
+        "rec_acc":  formData.to_acc,
+        "trans_pass": formData.trans_pass,
+        "trans_type":  formData.type,
+        "date": formData.date,
+        "amount": formData.amount,
+        "remarks": formData.remark,
+        "maturity_ins": formData.maturity,
       })
     })
       .then((response) => {
@@ -120,7 +121,7 @@ const Transaction = () => {
                   className="mb-3" controlId="from_acc">
                   <Form.Label>From Account</Form.Label>
                   <Form.Control
-                    type="Number"
+                    type="text"
                     name="from_acc"
                     value={formData.from_acc}
                     onChange={handleChange}
@@ -134,7 +135,7 @@ const Transaction = () => {
                 <Form.Group className="mb-3" controlId="to_acc">
                   <Form.Label>To Account</Form.Label>
                   <Form.Control
-                    type="Number"
+                    type="text"
                     name="to_acc"
                     value={formData.to_acc}
                     onChange={handleChange}
@@ -192,6 +193,20 @@ const Transaction = () => {
                     type="text"
                     name="remark"
                     value={formData.remark}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+
+              <Col style={{ margin: "10px 0px" }}>
+                <Form.Group
+                  className="mb-3" controlId="trans_pass">
+                  <Form.Label>Transaction Password</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="trans_pass"
+                    value={formData.trans_pass}
                     onChange={handleChange}
                     required
                   />

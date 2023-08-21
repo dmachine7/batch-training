@@ -83,13 +83,13 @@ const Admin = () => {
                             <th scope="col">Mobile</th>
                             <th scope="col">DOB</th>
                             <th scope="col">Aadhar</th>
-                            <th scope="col">Fathers Name</th>
-                            <th scope="col">Annual Income</th>
-                            <th scope="col">Occupation Type </th>
-                            <th scope="col">Permenant address </th>
-                            <th scope="col">Residential Address </th>
                             <th scope="col">Account No</th>
                             <th scope="col">Balance</th>
+                            <th scope="col">Annual Income</th>
+                            {/* <th scope="col">Fathers Name</th> */}
+                            {/* <th scope="col">Occupation Type </th> */}
+                            {/* <th scope="col">Permenant address </th> */}
+                            {/* <th scope="col">Residential Address </th> */}
                             {/* <th scope="col">Actions</th> */}
 
 
