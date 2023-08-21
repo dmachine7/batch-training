@@ -13,8 +13,11 @@ import UserDetails from './Components/UserDetails';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
+  localStorage.setItem("token", "123");
+
   return (
     <div className='main'>
       <ToastContainer />
@@ -27,6 +30,15 @@ function App() {
         <Route path="/history" element={<TransactionHistory />} />
         <Route path="/user" element={<UserDetails />} />
         <Route path="/signup" element={<Sign_up />} />
+        {/* <Route
+            exact
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          /> */}
       </Routes>
     </div>
   );

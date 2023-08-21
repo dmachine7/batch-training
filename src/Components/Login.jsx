@@ -4,16 +4,26 @@ import Form from "react-bootstrap/Form";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import "../Styles/Login.css";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Login = () => {
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const url = "http://localhost:8080/auth/login";
+  let token = "";
 
   const navigate = useNavigate();
 
   const validateAuth = () => {
     console.log(userid, password);
-    navigate("/home");
+    const data = {
+        "username": userid,
+        "password": password
+    }
+    axios.post(url, data).then((res) => {
+        localStorage.setItem("token", res.data.jwtToken)
+        navigate("/home");
+    });
   };
 
   const handleSubmit = (e) => {
