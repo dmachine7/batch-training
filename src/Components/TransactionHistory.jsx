@@ -20,6 +20,7 @@ const TransactionHistory = () => {
 
   useEffect(() => {
     getData();
+    console.log(posts)
   }, []);
   return (
     <div>

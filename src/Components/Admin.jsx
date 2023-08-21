@@ -2,7 +2,48 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 
 const Admin = () => {
-    const [user, setUser] = useState([]);
+    const [users, setUsers] = useState([]);
+    // const [approved, setApproved] = useState(false);
+
+    // const users = [
+    //     {
+    //         "id": 1,
+    //         "acc_no": 1001,
+    //         "title": "Mr",
+    //         "name": "singh",
+    //         "father_name": "rahul",
+    //         "mobile": "1234567890",
+    //         "email": "rahul@temp.com",
+    //         "aadhar": "123443211234",
+    //         "dob": "2023-08-10T18:30:00.000+00:00",
+    //         "per_address": "abc",
+    //         "res_address": "qsw",
+    //         "occ_type": "employee",
+    //         "source_income": "self",
+    //         "gross_annual_income": "100",
+    //         "account_status": 0,
+    //         "balance": 1000
+
+    //     },
+    //     {
+    //         "id": 2,
+    //         "acc_no": 1002,
+    //         "title": "Mr",
+    //         "name": "atul",
+    //         "father_name": "atul",
+    //         "mobile": "9876543211",
+    //         "email": "atul@temp.com`",
+    //         "aadhar": "324145677689",
+    //         "dob": "2023-08-10T18:30:00.000+00:00",
+    //         "per_address": "def",
+    //         "res_address": "def",
+    //         "occ_type": "employee",
+    //         "source_income": "self",
+    //         "gross_annual_income": "100",
+    //         "account_status": 1,
+    //         "balance": 23345
+
+    //     }];
 
     const getData = () => {
         var requestOptions = {
@@ -13,7 +54,7 @@ const Admin = () => {
 
         fetch("http://localhost:8080/api/customer/getAll", requestOptions)
             .then((response) => response.json())
-            .then((result) => setUser(result))
+            .then((result) => setUsers(result))
             .catch((error) => console.log("error", error));
     };
 
@@ -21,10 +62,14 @@ const Admin = () => {
         getData();
     }, []);
 
-    const handleApprove = (e) => {
+    const handleApprove = (e,user) => {
         e.preventDefault();
+        console.log(user, "approved")
+        user.account_status = 1;
+        
+        console.log(user, "approved after")
 
-        fetch("http://localhost:8080/api/customer/sendData", {
+        fetch("http://localhost:8080/api/customer/update/id", {
             method: "POST",
             redirect: "follow",
             headers: {
@@ -32,9 +77,7 @@ const Admin = () => {
             },
 
             //make sure to serialize your JSON body
-            body: JSON.stringify({
-                
-            })
+            body: user
         })
             .then((response) => {
                 //do something awesome that makes the world a better place
@@ -42,10 +85,14 @@ const Admin = () => {
             });
     }
 
-    const handleDeny = (e) => {
+    const handleDeny = (e,user) => {
         e.preventDefault();
+        console.log(user, "approved")
+        user.account_status = 2;
+        
+        console.log(user, "approved after")
 
-        fetch("http://localhost:8080/api/customer/sendData", {
+        fetch("http://localhost:8080/api/customer/update/id", {
             method: "POST",
             redirect: "follow",
             headers: {
@@ -54,7 +101,7 @@ const Admin = () => {
 
             //make sure to serialize your JSON body
             body: JSON.stringify({
-                
+                body: user
             })
         })
             .then((response) => {
@@ -73,6 +120,16 @@ const Admin = () => {
                 </div>
             </div>
 
+            {/* <div style={{ margin: "0px 20px" }}>
+                <Button style={{ margin: "0px 5px", fontSize: "20px", padding: "10px 20px", backgroundColor: "green", borderWidth: "0px" }} onClick={setApproved(true)} variant="primary" type="submit">
+                    Approved Customers
+                </Button>
+
+                <Button style={{ margin: "0px 5px", backgroundColor: "red", fontSize: "20px", padding: "10px 20px", borderWidth: "0px" }} onClick={setApproved(false)} variant="primary" type="submit">
+                    Pending Customers
+                </Button>
+            </div> */}
+
             <div>
                 <table style={{ margin: "10px 20px" }} class="table table-bordered">
                     <thead class="thead-dark">
@@ -86,53 +143,48 @@ const Admin = () => {
                             <th scope="col">Account No</th>
                             <th scope="col">Balance</th>
                             <th scope="col">Annual Income</th>
-                            {/* <th scope="col">Fathers Name</th> */}
-                            {/* <th scope="col">Occupation Type </th> */}
-                            {/* <th scope="col">Permenant address </th> */}
-                            {/* <th scope="col">Residential Address </th> */}
-                            {/* <th scope="col">Actions</th> */}
-
+                            <th scope="col">Actions</th>
 
                         </tr>
                     </thead>
+
+
                     <tbody>
-                        {user.map((trans, id) => {
+                        {users.map((user, id) => {
+                            console.log(user, id);
+                            // if (user.account_status == 0) {
                             return (
 
-                                <tr>
-                                    {/* <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td>
-                  <td>{user.}</td> */}
-                                    <td style={{}}>
-                                        <Button style={{ margin: "0px 5px" }} onClick={handleApprove} variant="primary" type="submit">
-                                            Approve
-                                        </Button>
+                                <tr key={id}>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.mobile}</td>
+                                    <td>{user.dob}</td>
+                                    <td>{user.aadhar}</td>
+                                    <td>{user.acc_no}</td>
+                                    <td>{user.balance}</td>
+                                    <td>{user.gross_annual_income}</td>
+                                    {user.account_status == 0 ?
+                                        <td style={{}}>
+                                            <Button style={{ margin: "0px 5px", backgroundColor: "green", borderWidth: "0px" }} onClick={e => handleApprove(e, user)} variant="primary" type="submit">
+                                                Approve
+                                            </Button>
 
-                                        <Button style={{ margin: "0px 5px" }}  onClick={handleDeny} variant="primary" type="submit">
-                                            Deny
-                                        </Button>
-
-                                    </td>
-
-
+                                            <Button style={{ margin: "0px 5px", backgroundColor: "red", borderWidth: "0px" }} onClick={e => handleDeny(e,user)} variant="primary" type="submit">
+                                                Deny
+                                            </Button>
+                                        </td> : <td> No actions</td>
+                                    }
                                 </tr>
                             )
-                        })}
+                        }
+                        )}
 
                     </tbody>
                 </table>
 
             </div>
-        </div>
+        </div >
     )
 }
 
