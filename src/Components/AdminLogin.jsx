@@ -6,10 +6,10 @@ import "../Styles/Login.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Login = () => {
+const AdminLogin = () => {
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const url = "http://localhost:8080/auth/login";
+  const url = "http://localhost:8080/api/admin/login";
   let token = "";
 
   const navigate = useNavigate();
@@ -21,8 +21,10 @@ const Login = () => {
         "password": password
     }
     axios.post(url, data).then((res) => {
+      if (res && res.data) {
         localStorage.setItem("token", res.data.jwtToken)
-        navigate("/home");
+        navigate("/admin");
+      }
     });
   };
 
@@ -38,10 +40,10 @@ const Login = () => {
         <div className="login-form">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUserId">
-              <Form.Label>User ID</Form.Label>
+              <Form.Label>Admin ID</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter User Id"
+                placeholder="Enter Admin Id"
                 onChange={(e) => setUserId(e.target.value)}
                 required
               />
@@ -61,19 +63,9 @@ const Login = () => {
             </Button>
           </Form>
         </div>
-        <div>
-          <Link to="/forgotpw">Forgot password?</Link>
-        </div>
-        <div>
-          <Link to="/signup">New User? Register here</Link>
-        </div>
-        <hr />
-            <div style={{ alignContent: 'center' }}>
-            <Link to="/adminlogin">OR Sign in as Admin</Link>
-            </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;
