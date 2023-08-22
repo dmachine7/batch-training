@@ -14,6 +14,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './Components/PrivateRoute';
+import AdminLogin from './Components/AdminLogin';
 
 function App() {
   localStorage.setItem("token", "123");
@@ -23,6 +24,8 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLogin />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/forgotpw" element={<ForgotPassword />} />
@@ -30,15 +33,6 @@ function App() {
         <Route path="/history" element={<TransactionHistory />} />
         <Route path="/user" element={<UserDetails />} />
         <Route path="/signup" element={<Sign_up />} />
-        {/* <Route
-            exact
-            path="/home"
-            element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            }
-          /> */}
       </Routes>
     </div>
   );
