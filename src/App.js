@@ -33,9 +33,8 @@ function App() {
         <Route path="/transaction" element={<Transaction />} />
         <Route path="/history" element={<TransactionHistory />} />
         <Route path="/user" element={<UserDetails />} />
-        <Route path="/signup" element={<Sign_up />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
-        <Route path="/signuppw" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
