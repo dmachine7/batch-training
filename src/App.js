@@ -6,19 +6,16 @@ import Login from './Components/Login';
 import Dashboard  from './Components/Dashboard';
 import ForgotPassword from './Components/ForgotPassword';
 import Home from './Components/Home';
-<<<<<<< HEAD
-import Sign_up from './Components/Sign_up';
 import Transaction from './Components/Transaction';
 import TransactionHistory from './Components/TransactionHistory';
 import UserDetails from './Components/UserDetails';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import RegisterAccount from './Components/RegisterAccount';
 import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
-=======
 import SignUp from './Components/SignUp';
->>>>>>> c02b50deba022d5e713e7f1f351c38f7286d6342
 
 function App() {
   localStorage.setItem("token", "123");
@@ -33,14 +30,12 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/forgotpw" element={<ForgotPassword />} />
-<<<<<<< HEAD
-        <Route path="/transaction/:type" element={<Transaction />} />
+        <Route path="/transaction" element={<Transaction />} />
         <Route path="/history" element={<TransactionHistory />} />
         <Route path="/user" element={<UserDetails />} />
         <Route path="/signup" element={<Sign_up />} />
-=======
+        <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signuppw" element={<SignUp />} />
->>>>>>> c02b50deba022d5e713e7f1f351c38f7286d6342
       </Routes>
     </div>
   );
