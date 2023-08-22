@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Alert} from 'react-bootstrap';
+import '../Styles/SignUp.css';
 
 const SignUp = () => {
   const generateRandomAccNo = () => {
@@ -19,31 +20,15 @@ const SignUp = () => {
     per_address: '',
     res_address: '',
     occ_type: '',
-    source_income: '',
     gross_annual_income: '',
     acc_no: generateRandomAccNo(), 
   });
   
   const [errors, setErrors] = useState({});
-  const [titleError, setTitleError] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-
-    if (name === 'title') {
-      const validTitles = ['mr', 'mrs', 'miss'];
-      if (!validTitles.includes(value.toLowerCase())) {
-        setTitleError(true);
-      } else {
-        setTitleError(false);
-      }
-    }
-   
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
   };
 
   const handleSubmit = async (event) => {
@@ -52,16 +37,22 @@ const SignUp = () => {
     if (!formData.title) newErrors.title = 'Required field';
     if (!formData.name) newErrors.name = 'Required field';
     if (!formData.father_name) newErrors.father_name = 'Required field';
-    if (!formData.dob) newErrors.dob = 'Required field';
+    if (!formData.dob) {newErrors.dob = 'Required field';}
+    else {
+      const dobDate = new Date(formData.dob);
+      const currentDate = new Date();
+      if (dobDate > currentDate) {
+        newErrors.dob = "Date of Birth cannot be a future date";
+      }
+    }
     if (!formData.aadhar) newErrors.aadhar = 'Required field';
     if (!formData.email) newErrors.email = 'Required field';
     if (!formData.mobile) newErrors.mobile = 'Required field';
     if (!formData.per_address) newErrors.per_address = 'Required field';
     if (!formData.res_address) newErrors.res_address = 'Required field';
     if (!formData.occ_type) newErrors.occ_type = 'Required field';
-    if (!formData.source_income) newErrors.source_income = 'Required field';
     if (!formData.gross_annual_income) newErrors.gross_annual_income = 'Required field';
-
+    
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
@@ -101,16 +92,21 @@ const SignUp = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId='title'>
+            <Form.Group controlId='title'>              
               <Form.Label>Title</Form.Label>
               <Form.Control
-                type='text'
+                as='select'
                 name='title'
                 value={formData.title}
                 onChange={handleInputChange}
-                isInvalid={titleError}
-              />
-              {titleError && <Form.Control.Feedback type='invalid'>Invalid title format</Form.Control.Feedback>}
+                isInvalid={!!errors.title}
+              >
+                <option value=''>Select Title</option>
+                <option value='Mr.'>Mr.</option>
+                <option value='Mrs.'>Mrs.</option>
+                <option value='Miss.'>Miss.</option>
+              </Form.Control>
+              <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId='name'>
@@ -215,26 +211,21 @@ const SignUp = () => {
 
           <Form.Group controlId='occ_type'>
             <Form.Label>Occupation Type</Form.Label>
-            <Form.Control
-              type='text'
-              name='occ_type'
-              value={formData.occ_type}
-              onChange={handleInputChange}
-              isInvalid={!!errors.occ_type}
-            />
-            <Form.Control.Feedback type='invalid'>{errors.occ_type}</Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group controlId='source_income'>
-            <Form.Label>Source of Income</Form.Label>
-            <Form.Control
-              type='text'
-              name='source_income'
-              value={formData.source_income}
-              onChange={handleInputChange}
-              isInvalid={!!errors.source_income}
-            />
-            <Form.Control.Feedback type='invalid'>{errors.source_income}</Form.Control.Feedback>
+                <Form.Control
+                  as='select'
+                  name='occ_type'
+                  value={formData.occ_type}
+                  onChange={handleInputChange}
+                  isInvalid={!!errors.occ_type}
+                >
+                  <option value=''>Select Occupation Type</option>
+                  <option value='Student'>Student</option>
+                  <option value='Private job'>Private job</option>
+                  <option value='Self Employed'>Self Employed</option>
+                  <option value='Unemployed'>Unemployed</option>
+                  <option value='Retired'>Retired</option>
+                </Form.Control>
+                <Form.Control.Feedback type='invalid'>{errors.occ_type}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId='gross_annual_income'>
