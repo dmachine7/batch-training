@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import '../Styles/SignUp.css';
+
 const SignUp = () => {
   const generateRandomAccNo = () => {
     const min = 1000000000;
