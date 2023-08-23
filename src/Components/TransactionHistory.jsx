@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import TransactionTable from './TransactionTable';
+import Details from './Details';
 
 
 const TransactionHistory = () => {
@@ -25,13 +27,14 @@ const TransactionHistory = () => {
   return (
     <div>
       <div><h1 style={{ textAlign: "center", padding: "20px" }}>Transaction History</h1></div>
-      <div style={{ padding: "20px" }}>
+      {/* <div style={{ padding: "20px" }}>
         <h4>Name : { }</h4>
         <h4>Account no : { }</h4>
-      </div>
+      </div> */}
+      <Details name="Sahil Kedare" acc_no="73793487" type="user" email= "sahilkedare4444@gmail.com"/>
 
       <div>
-        <table style={{margin: "10px 20px"}} class="table table-bordered">
+        {/* <table style={{margin: "10px 20px"}} class="table table-bordered">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Transaction Id</th>
@@ -62,7 +65,8 @@ const TransactionHistory = () => {
             })}
 
           </tbody>
-        </table>
+        </table> */}
+        <TransactionTable transactions={posts}/>
 
       </div>
 
