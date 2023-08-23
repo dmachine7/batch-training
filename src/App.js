@@ -16,6 +16,7 @@ import RegisterAccount from './Components/RegisterAccount';
 import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
+import Admin from './Components/Admin';
 
 function App() {
   localStorage.setItem("token", "123");
@@ -26,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin" element={<Admin/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/forgotpw" element={<ForgotPassword />} />
