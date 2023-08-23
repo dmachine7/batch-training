@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const Login = () => {
+  localStorage.setItem("type", "customer");
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:8080/auth/login";
@@ -33,7 +34,7 @@ const Login = () => {
 
   return (
     <div className="home">
-      <h1>Welcome to online banking</h1>
+      <h1>Welcome to Online Bank of India</h1>
       <div className="login">
         <div className="login-form">
           <Form onSubmit={handleSubmit}>

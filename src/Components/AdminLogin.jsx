@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const AdminLogin = () => {
+  localStorage.setItem("type", "admin");
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const url = "http://localhost:8080/api/admin/login";
+  const url = "http://localhost:8080/auth/admin/login";
   let token = "";
 
   const navigate = useNavigate();
@@ -62,6 +63,10 @@ const AdminLogin = () => {
               Submit
             </Button>
           </Form>
+          <hr />
+            <div style={{ alignSelf: 'center' }}>
+            <Link to="/">OR Sign in as customer</Link>
+            </div>
         </div>
       </div>
     </div>

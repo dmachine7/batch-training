@@ -91,7 +91,7 @@ const SignUp = () => {
           <Form onSubmit={handleSubmit}>
             <h3 className='mb-4 text-center'>Registration Form</h3>
 
-            <Form.Group controlId='acc_no'>
+            {/* <Form.Group controlId='acc_no'>
               <Form.Label>Account Number</Form.Label>
               <Form.Control
                 type='text'
@@ -99,7 +99,7 @@ const SignUp = () => {
                 value={formData.acc_no}
                 readOnly
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId='title'>
               <Form.Label>Title</Form.Label>

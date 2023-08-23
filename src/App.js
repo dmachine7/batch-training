@@ -16,9 +16,11 @@ import RegisterAccount from './Components/RegisterAccount';
 import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
+import SetPassword from './Components/SetPassword';
 
 function App() {
-  localStorage.setItem("token", "123");
+  localStorage.setItem("token", "null"); // jwt auth token
+  localStorage.setItem("type", "customer"); //type of user
 
   return (
     <div className='main'>
@@ -26,15 +28,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/home" element={<Home />} />
+        <Route 
+          path="/home" 
+          element={
+            <PrivateRoute routeType={"customer"}>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/admin" 
+          element={
+            <PrivateRoute routeType={"admin"}>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         <Route path="/forgotpw" element={<ForgotPassword />} />
-        <Route path="/transaction" element={<Transaction />} />
-        <Route path="/history" element={<TransactionHistory />} />
-        <Route path="/user" element={<UserDetails />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/setpassword" element={<SetPassword />} />
       </Routes>
     </div>
   );
