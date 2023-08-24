@@ -108,20 +108,20 @@ const Admin = () => {
         
         console.log(user, "approved after")
 
-        // fetch("http://localhost:8080/api/customer/update/id", {
-        //     method: "POST",
-        //     redirect: "follow",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
+        fetch("http://localhost:8080/api/customer/update/id", {
+            method: "PUT",
+            redirect: "follow",
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-        //     //make sure to serialize your JSON body
-        //     body: user
-        // })
-        //     .then((response) => {
-        //         //do something awesome that makes the world a better place
-        //         console.log(response, "approved user");
-        //     });
+            //make sure to serialize your JSON body
+            body: user
+        })
+            .then((response) => {
+                //do something awesome that makes the world a better place
+                console.log(response, "approved user");
+            });
     }
 
     const handleDeny = (e,user) => {

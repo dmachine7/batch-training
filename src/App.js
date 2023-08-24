@@ -17,6 +17,7 @@ import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
 import Admin from './Components/Admin';
+import AdminSearch from './Components/AdminSearch';
 
 function App() {
   localStorage.setItem("token", "123");
@@ -36,6 +37,8 @@ function App() {
         <Route path="/user" element={<UserDetails />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/adminSearch" element={<AdminSearch />} />
+
       </Routes>
     </div>
   );
