@@ -18,6 +18,7 @@ import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
 import Admin from './Components/Admin';
 import AdminSearch from './Components/AdminSearch';
+import TransactionSearch from './Components/TransactionSearch';
 
 function App() {
   localStorage.setItem("token", "123");
@@ -37,7 +38,8 @@ function App() {
         <Route path="/user" element={<UserDetails />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/adminSearch" element={<AdminSearch />} />
+        <Route path="/usersearch" element={<AdminSearch />} />
+        <Route path="transactionsearch" element={<TransactionSearch />} />
 
       </Routes>
     </div>

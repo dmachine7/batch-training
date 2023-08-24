@@ -17,7 +17,7 @@ const AdminSearch = () => {
 
 		fetch("http://localhost:8080/api/customer/getAll", requestOptions)
 			.then((response) => response.json())
-			.then((result) => {setUsers(result); setSearchedUsers(result)})
+			.then((result) => {setUsers(result); setSearchedUsers(result); console.log(users, "adjlfkjakl")})
 			.catch((error) => console.log("error", error));
 			
 	};
@@ -37,15 +37,16 @@ const AdminSearch = () => {
 
 	useEffect(() => {
 		getUsers();
+		console.log(users)
 	}, [])
 
 	return (
 		<div>
 			<div>
-				<div><h1 style={{ textAlign: "center", padding: "20px" }}>Admin Dashboard</h1></div>
+				<div><h1 style={{ textAlign: "center", padding: "20px" }}>Search Users</h1></div>
 				<div style={{ padding: "10px" }} >
 					<Form.Group style={{ width: "30%", marginBottom: "20px" }} controlId='acc_no'>
-						<Form.Label>Search By Account No</Form.Label>
+						<Form.Label>Search By Email Id</Form.Label>
 						<Form.Control
 							type='text'
 							name='acc_no'
