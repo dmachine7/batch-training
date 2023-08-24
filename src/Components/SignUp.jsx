@@ -23,7 +23,7 @@ const SignUp = () => {
     gross_annual_income: "",
     acc_no: generateRandomAccNo(),
   });
-
+ 
   const [errors, setErrors] = useState({});
   const [passwordErrors, setPasswordErrors] = useState({});
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -66,7 +66,6 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newErrors = {};
-    if (!setPassword.password) newErrors.password = "Required field";
     if (!formData.title) newErrors.title = "Required field";
     if (!formData.name) newErrors.name = "Required field";
     if (!formData.father_name) newErrors.father_name = "Required field";
@@ -93,15 +92,24 @@ const SignUp = () => {
     if (Object.keys(newErrors).length > 0) {
       return;
     }
-
+    const accountData = {
+      acc_no : formData.acc_no,
+      email : formData.email,
+      log_pass : password,
+      trans_pass : password,
+    }
     try {
       console.log("Form values:", formData);
-      const response = await axios.post(
+      console.log("Account values:", accountData);
+      const customerResponse = await axios.post(
         "http://localhost:8080/api/customer/sendData",
         { ...formData, acc_no: formData.acc_no.toString() }
       );
-
-      console.log("Server response:", response.data);
+      console.log("Server response:", customerResponse.data);
+      const accountResponse = await axios.post(
+        "http://localhost:8080/api/account/sendData", accountData
+      )
+      console.log("Server response:", accountResponse.data);
       alert("Form submitted successfully!");
     } catch (error) {
       console.error("Error:", error);
@@ -344,7 +352,7 @@ const SignUp = () => {
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
-                  isInvalid={confirmPassword !== formData.password}
+                  isInvalid={confirmPassword !== password}
                 />
                 <Form.Control.Feedback type="invalid">
                   Passwords do not match
