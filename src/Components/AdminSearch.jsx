@@ -43,7 +43,7 @@ const AdminSearch = () => {
 	return (
 		<div>
 			<div>
-				<div><h1 style={{ textAlign: "center", padding: "20px" }}>Search Users</h1></div>
+				<div><h1 style={{ textAlign: "center", padding: "20px" }}>User Details</h1></div>
 				<div style={{ padding: "10px" }} >
 					<Form.Group style={{ width: "30%", marginBottom: "20px" }} controlId='acc_no'>
 						<Form.Label>Search By Email Id</Form.Label>
@@ -79,6 +79,7 @@ const AdminSearch = () => {
 										</tr>
 									)
 								})}
+								{searchedUsers.length ==0 ? <p style={{color: "red"}}>enter valid search text</p> : <p></p>}
 							</tbody>
 						</table>
 					</div>
