@@ -17,6 +17,9 @@ import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
 import Admin from './Components/Admin';
+import AdminSearch from './Components/AdminSearch';
+import TransactionSearch from './Components/TransactionSearch';
+import AdminHome from './Components/AdminHome';
 
 function App() {
   localStorage.setItem("token", "123");
@@ -26,8 +29,8 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admin" element={<Admin/>} />
+        <Route path="/adminlogin" element={<AdminLogin />} /> 
+        <Route path="/admin" element={<AdminHome/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/forgotpw" element={<ForgotPassword />} />
@@ -36,6 +39,7 @@ function App() {
         <Route path="/user" element={<UserDetails />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
+
       </Routes>
     </div>
   );
