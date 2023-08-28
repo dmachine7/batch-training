@@ -14,6 +14,8 @@ const Login = () => {
   let token = "";
 
   const navigate = useNavigate();
+  localStorage.setItem("token", "null");
+  localStorage.setItem("user", "null");
 
   const validateAuth = () => {
     console.log(userid, password);
