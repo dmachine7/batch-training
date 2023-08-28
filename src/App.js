@@ -18,6 +18,9 @@ import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
 import Admin from './Components/Admin';
 import SetPassword from './Components/SetPassword';
+import AdminSearch from './Components/AdminSearch';
+import TransactionSearch from './Components/TransactionSearch';
+import AdminHome from './Components/AdminHome';
 
 function App() {
   localStorage.setItem("token", "null"); // jwt auth token
@@ -48,7 +51,7 @@ function App() {
         <Route path="/forgotpw" element={<ForgotPassword />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/setpassword" element={<SetPassword />} />
+
       </Routes>
     </div>
   );
