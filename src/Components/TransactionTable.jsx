@@ -2,11 +2,11 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 
 const TransactionTable = ({transactions}) => {
-  console.log(transactions.length);
+
   return (
-    <div>
-    {transactions.length ==0 ? <p style={{margin: "0px auto ", fontSize: "20p"}}>No Transactions yet</p> :
-          <Table striped bordered hover style={{ margin: "1rem" }}>
+    <div style={{ padding: "3rem" }}>
+    {transactions && transactions.length ==0 ? <p style={{margin: "0px auto ", fontSize: "20p"}}>No Transactions yet</p> :
+          <Table striped bordered hover>
 
           <thead class="thead-dark">
             <tr>
@@ -21,7 +21,7 @@ const TransactionTable = ({transactions}) => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((trans, id) => {
+            {transactions && transactions.map((trans, id) => {
               return (
 
                 <tr key={id}>
