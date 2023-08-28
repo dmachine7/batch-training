@@ -68,9 +68,9 @@ const Login = () => {
             </Button>
           </Form>
         </div>
-        <div>
+        {/* <div>
           <Link to="/forgotpw">Forgot password?</Link>
-        </div>
+        </div> */}
         <div>
           <Link to="/signup">New User? Register here</Link>
         </div>

@@ -27,7 +27,7 @@ const TransactionHistory = () => {
   }, []);
   return (
     <div>
-      <div><h1 style={{ textAlign: "center", padding: "20px" }}>Transaction History</h1></div>
+      <div><h1 style={{ textAlign: "center", padding: "20px" }}>Your Transaction History</h1></div>
       {/* <div style={{ padding: "20px" }}>
         <h4>Name : { }</h4>
         <h4>Account no : { }</h4>

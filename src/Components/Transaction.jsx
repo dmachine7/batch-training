@@ -74,7 +74,8 @@ const Transaction = () => {
       .then((response) => {
         //do something awesome that makes the world a better place
         console.log(response, "transaction post done");
-        toast.success("Successful transaction")
+        response.status != 200 ? toast.error("Invalid entry") :
+				toast.success("Successful transaction")
         setFormData({
           type: "IMPS",
           from_acc: localData ? localData.accNo : "",

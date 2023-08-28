@@ -4,18 +4,28 @@ import Card from 'react-bootstrap/Card';
 import '../Styles/Dashboard.css';
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [data, setData] = useState();
+  const [account, setAccount] = useState();
   const localData = JSON.parse(localStorage.getItem("user"))
-  const url = "http://localhost:8080/api/customer/"
+  const customerUrl = "http://localhost:8080/api/customer/"
+  const accountUrl = "http://localhost:8080/api/account/"
+
+  useEffect(() => {
+    axios.get(accountUrl + localData.accNo)
+        .then((res) => setAccount(res.data))
+        .catch((err) => toast.error("Error loading details"))
+  }, [localData])
 
   useEffect(() => {
     if (localData) {
-      axios.get(url + localData.username)
+      axios.get(customerUrl + localData.username)
         .then((res) => setData(res.data))
+        .catch((err) => toast.error("Error loading details"))
     }
-  }, [localData])
+  }, [account])
 
   return (
     <div className="dashboard-wrapper">
@@ -25,7 +35,7 @@ const Dashboard = () => {
             <Card.Text>
               Signed in as
             </Card.Text>
-            <Card.Title>{localData.username}</Card.Title>
+            <Card.Title>{account && account.email}</Card.Title>
           </Card.Body>
         </Card>
         <Card style={{ margin: "1rem" }}>
@@ -33,7 +43,7 @@ const Dashboard = () => {
             <Card.Text>
               Account no.
             </Card.Text>
-            <Card.Title>{localData.accNo}</Card.Title>
+            <Card.Title>{account && account.acc_no}</Card.Title>
           </Card.Body>
         </Card>
         <Card style={{ margin: "1rem" }}>
@@ -41,7 +51,7 @@ const Dashboard = () => {
             <Card.Text>
               Balance
             </Card.Text>
-            <Card.Title>&#8377; {localData.balance}</Card.Title>
+            <Card.Title>&#8377; {account && account.balance}</Card.Title>
           </Card.Body>
         </Card>
       </div>
