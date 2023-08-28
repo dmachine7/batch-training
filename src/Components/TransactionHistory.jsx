@@ -6,6 +6,7 @@ import Details from './Details';
 const TransactionHistory = () => {
  
   const [posts, setPosts] = useState([]);
+  const localData = JSON.parse(localStorage.getItem("user"))
 
   const getData = () => {
     var requestOptions = {
@@ -14,7 +15,7 @@ const TransactionHistory = () => {
       headers: {"Content-Type": "application/json"}
     };
 
-    fetch("http://localhost:8080/api/transaction/getAll", requestOptions)
+    fetch("http://localhost:8080/api/transaction/"+localData.accNo, requestOptions)
       .then((response) => response.json())
       .then((result) => setPosts(result))
       .catch((error) => console.log("error", error));
@@ -31,7 +32,6 @@ const TransactionHistory = () => {
         <h4>Name : { }</h4>
         <h4>Account no : { }</h4>
       </div> */}
-      <Details name="Sahil Kedare" acc_no="73793487" type="user" email= "sahilkedare4444@gmail.com"/>
 
       <div>
         {/* <table style={{margin: "10px 20px"}} class="table table-bordered">

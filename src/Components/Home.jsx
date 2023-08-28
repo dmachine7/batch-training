@@ -27,7 +27,7 @@ const Home = () => {
             <Nav.Link onClick={() => setComponent("history")}>Transaction History</Nav.Link>
             <Nav.Link onClick={() => setComponent("transaction")}>Payment</Nav.Link>
             <Nav.Link onClick={() => setComponent("self")}>Withdraw / Deposit</Nav.Link>
-            <Nav.Link onClick={() => setComponent("register")}>Net Banking</Nav.Link>
+            {/* <Nav.Link onClick={() => setComponent("register")}>Net Banking</Nav.Link> */}
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Navbar.Toggle />
