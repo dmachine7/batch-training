@@ -18,7 +18,7 @@ const TransactionHistory = () => {
 
     fetch("http://localhost:8080/api/transaction/" + localData.accNo, requestOptions)
       .then((response) => response.json())
-      .then((result) => setPosts(result))
+      .then((result) => setPosts(result.transaction))
       .catch((error) => console.log("error", error));
   };
 
