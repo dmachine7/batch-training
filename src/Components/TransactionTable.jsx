@@ -2,8 +2,8 @@ import React from 'react'
 
 const TransactionTable = ({transactions}) => {
   return (
-    <div>
-          <table style={{margin: "10px 20px"}} class="table table-bordered">
+    // <div>
+          <table style={{margin: "10px 20px",width: "90%"}} class="table table-bordered">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Transaction Id</th>
@@ -37,7 +37,7 @@ const TransactionTable = ({transactions}) => {
 
           </tbody>
         </table>
-    </div>
+    // </div>
   )
 }
 

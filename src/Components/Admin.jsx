@@ -101,7 +101,7 @@ const Admin = () => {
 
 			</div>
 			<div>
-				<table style={{ margin: "10px 20px" }} class="table table-bordered">
+				<table style={{ margin: "40px 20px",width: "85%" }} class="table table-bordered">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">Account No</th>
@@ -129,22 +129,22 @@ const Admin = () => {
 
 									{/* <td>{user.gross_annual_income}</td> */}
 									{user.accountStatus == 0 ?
-										<td style={{}}>
-											<Button style={{ margin: "0px 5px", backgroundColor: "green", borderWidth: "0px" }} onClick={e => handleApprove(e, user)} variant="primary" type="submit">
+										<td style={{padding: "10px"}}>
+											<Button style={{ margin: "0px 5px",padding: "8px 18px", backgroundColor: "green", borderWidth: "0px" }} onClick={e => handleApprove(e, user)} variant="primary" type="submit">
 												Approve
 											</Button>
 
-											<Button style={{ margin: "0px 5px", backgroundColor: "red", borderWidth: "0px" }} onClick={e => handleDeny(e, user)} variant="primary" type="submit">
+											<Button style={{ margin: "0px 5px",padding: "8px 18px", backgroundColor: "red", borderWidth: "0px" }} onClick={e => handleDeny(e, user)} variant="primary" type="submit">
 												Disable
 											</Button>
 
 
 										</td> : user.accountStatus == 1 ?
-											<td>
-												<Button style={{ margin: "0px 5px", backgroundColor: "red", borderWidth: "0px" }} onClick={e => handleDeny(e, user)} variant="primary" type="submit">
+											<td style={{padding: "10px"}}>
+												<Button style={{ margin: "0px 5px",padding: "8px 18px", backgroundColor: "red", borderWidth: "0px" }} onClick={e => handleDeny(e, user)} variant="primary" type="submit">
 													Disable
 												</Button>
-											</td> : <td>No Actions</td>
+											</td> : <td style={{padding: "8px 18px",margin: "0px 5px"}}>No Actions</td>
 									}
 								</tr>
 							)

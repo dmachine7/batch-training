@@ -56,7 +56,7 @@ const AdminSearch = () => {
 					</Form.Group>
 
 					<div>
-						<table style={{}} class="table table-bordered">
+						<table style={{width: "80%"}} class="table table-bordered">
 							<thead class="thead-dark">
 								<tr>
 									<th scope="col">Account No</th>
