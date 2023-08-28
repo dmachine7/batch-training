@@ -22,6 +22,7 @@ const SignUp = () => {
     occ_type: "",
     gross_annual_income: "",
     acc_no: generateRandomAccNo(),
+    account_status: 0
   });
  
   const [errors, setErrors] = useState({});
@@ -97,6 +98,7 @@ const SignUp = () => {
       email : formData.email,
       log_pass : password,
       trans_pass : password,
+      account_status: 0
     }
     try {
       console.log("Form values:", formData);

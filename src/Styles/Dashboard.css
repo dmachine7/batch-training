@@ -1,0 +1,18 @@
+.dashboard-left {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 25%;
+}
+
+.dashboard-right {
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+}
+
+.dashboard-wrapper {
+	display: flex;
+	flex-direction: row;
+	padding: 2% 5%;
+}
