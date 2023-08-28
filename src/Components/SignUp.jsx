@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import "../Styles/SignUp.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const generateRandomAccNo = () => {
@@ -9,6 +11,7 @@ const SignUp = () => {
     const max = 9999999999;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     name: "",
@@ -112,15 +115,16 @@ const SignUp = () => {
         "http://localhost:8080/api/account/sendData", accountData
       )
       console.log("Server response:", accountResponse.data);
-      alert("Form submitted successfully!");
+      toast.success("Form submitted successfully! Please login");
+      navigate("/")
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while submitting the form.");
+      toast.error("An error occurred while submitting the form.");
     }
   };
 
   return (
-    <Container>
+    <div className="wrapper">
       <Row className="justify-content-center">
         <Form onSubmit={handleSubmit}>
           <h3 className="mb-4 text-center">Registration Form</h3>
@@ -133,6 +137,7 @@ const SignUp = () => {
                   name="acc_no"
                   value={formData.acc_no}
                   readOnly
+                  disabled
                 />
               </Form.Group>
             </Col>
@@ -368,7 +373,7 @@ const SignUp = () => {
           </Button>
         </Form>
       </Row>
-    </Container>
+    </div>
   );
 };
 
