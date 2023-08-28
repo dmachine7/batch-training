@@ -1,8 +1,10 @@
 import React from 'react'
 
 const TransactionTable = ({transactions}) => {
+  console.log(transactions.length);
   return (
-    // <div>
+    <div>
+    {transactions.length ==0 ? <div style={{margin: "0px auto ", fontSize: "20px"}}>No Transactions yet</div> :
           <table style={{margin: "10px 20px",width: "90%"}} class="table table-bordered">
           <thead class="thead-dark">
             <tr>
@@ -37,7 +39,8 @@ const TransactionTable = ({transactions}) => {
 
           </tbody>
         </table>
-    // </div>
+   }
+ </div>
   )
 }
 

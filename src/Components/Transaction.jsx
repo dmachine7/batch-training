@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { toast } from 'react-toastify';
-
+import axios from 'axios';
 
 const Transaction = () => {
   const { type } = useParams();
@@ -50,7 +50,35 @@ const Transaction = () => {
       return;
     };
 
+    if(localData.password != formData.trans_pass){
+      toast.error("Invalid password");
+      return;
+    }
     setError("");
+
+    // const obj = JSON.stringify({
+    //   "send_acc":  formData.from_acc, 
+    //   "rec_acc":  formData.to_acc,
+    //   "trans_pass": formData.trans_pass,
+    //   "date": formData.date,
+    //   "amount": formData.amount,
+    //   "remarks": formData.remark,
+    //   "maturity_ins": formData.maturity,
+    // })
+    
+    // const params= {
+    //   "password" :formData.trans_pass
+    // }
+
+    // const headers = {
+    //   "Content-Type": "application/json"
+    // }
+
+    // const response =async () => {
+    //  const res = await axios.post("http://localhost:8080/api/transaction/sendData",obj,{params, headers})
+    //  console.log(res,"ressssss")
+    // }
+
 
     fetch("http://localhost:8080/api/transaction/sendData", {
       method: "POST",
@@ -58,22 +86,24 @@ const Transaction = () => {
       headers: {
         "Content-Type": "application/json"
       },
-
-      //make sure to serialize your JSON body
+    //   //make sure to serialize your JSON body
       body: JSON.stringify({
-        "send_acc":  formData.from_acc, 
-        "rec_acc":  formData.to_acc,
-        "trans_pass": formData.trans_pass,
-        "trans_type":  formData.type,
-        "date": formData.date,
-        "amount": formData.amount,
-        "remarks": formData.remark,
-        "maturity_ins": formData.maturity,
+        trans_type: formData.type,
+        send_acc:  formData.from_acc, 
+        rec_acc:  formData.to_acc,
+        // date: formData.date,
+        amount: formData.amount,
+        remarks: formData.remark,
+        maturity_ins: formData.maturity,
       })
     })
       .then((response) => {
         //do something awesome that makes the world a better place
         console.log(response, "transaction post done");
+        if(response.status !=200) {
+          toast.error("Invalid Credentials")
+
+        }
         toast.success("Successful transaction")
         setFormData({
           type: "IMPS",
@@ -91,7 +121,7 @@ const Transaction = () => {
         toast.error("Trouble requesting transaction")
         navigate("/home")
       })
-    console.log(transactionType);
+    // console.log(transactionType);
   }
 
   return (

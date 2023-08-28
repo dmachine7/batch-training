@@ -5,7 +5,8 @@ import Details from './Details';
 const Admin = () => {
 	const [users, setUsers] = useState([]);
 	const [approved, setApproved] = useState(false);
-
+	const localData = JSON.parse(localStorage.getItem("user"))
+	console.log(localData,"localsotrage")
 
 	const getData = () => {
 		var requestOptions = {
@@ -97,7 +98,7 @@ const Admin = () => {
 		<div>
 			<div>
 				<div><h1 style={{ textAlign: "center", padding: "20px" }}>Admin Dashboard</h1></div>
-				<Details name="Admin Admin" email="admin@gmail.com" />
+				{/* <Details name={localData.username} /> */}
 
 			</div>
 			<div>
