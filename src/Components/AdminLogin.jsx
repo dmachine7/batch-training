@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const AdminLogin = () => {
+  localStorage.setItem("type", "admin");
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const url = "http://localhost:8080/api/admin/login";
+  const url = "http://localhost:8080/auth/login";
   let token = "";
 
   const navigate = useNavigate();
@@ -23,9 +24,18 @@ const AdminLogin = () => {
     axios.post(url, data).then((res) => {
       if (res && res.data) {
         localStorage.setItem("token", res.data.jwtToken)
-        navigate("/admin");
+        localStorage.setItem("user", JSON.stringify(res.data));
+        if (!res.data.isAdmin) {
+          toast.error("You do not have Admin access")
+          navigate("/");
+        } else {
+          localStorage.setItem("type", "admin");
+          console.log(JSON.parse(localStorage.getItem("user")));
+          navigate("/admin");
+        }
       }
-    });
+    })
+    .catch((err) => toast.error("Invalid credentials"));
   };
 
   const handleSubmit = (e) => {
@@ -62,6 +72,10 @@ const AdminLogin = () => {
               Submit
             </Button>
           </Form>
+          <hr />
+            <div style={{ alignSelf: 'center' }}>
+            <Link to="/">OR Sign in as customer</Link>
+            </div>
         </div>
       </div>
     </div>

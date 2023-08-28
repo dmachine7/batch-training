@@ -1,10 +1,14 @@
 import { Navigate } from "react-router-dom";
-// import { useAuth } from "../auth/useAuth";
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ children, routeType }) {
   const token = localStorage.getItem('token')
-	console.log(token)
-  return token != null ? children : <Navigate to="/" />;
+  const type = localStorage.getItem('type')
+
+  if (routeType == "customer") {
+    return token != 'null' ? children : <Navigate to="/" />;
+  } else {
+    return type == "admin" && token != 'null' ? children : <Navigate to="/adminlogin" />;
+  }
 }
 
 export default PrivateRoute;

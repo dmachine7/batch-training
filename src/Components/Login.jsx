@@ -7,12 +7,15 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const Login = () => {
+  localStorage.setItem("type", "customer");
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:8080/auth/login";
   let token = "";
 
   const navigate = useNavigate();
+  localStorage.setItem("token", "null");
+  localStorage.setItem("user", "null");
 
   const validateAuth = () => {
     console.log(userid, password);
@@ -21,9 +24,13 @@ const Login = () => {
         "password": password
     }
     axios.post(url, data).then((res) => {
+      console.log(res)
         localStorage.setItem("token", res.data.jwtToken)
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(JSON.parse(localStorage.getItem("user")));
         navigate("/home");
-    });
+    })
+    .catch((err) => toast.error("Invalid credentials"));;
   };
 
   const handleSubmit = (e) => {
@@ -33,7 +40,7 @@ const Login = () => {
 
   return (
     <div className="home">
-      <h1>Welcome to online banking</h1>
+      <h1>Welcome to Online Bank of India</h1>
       <div className="login">
         <div className="login-form">
           <Form onSubmit={handleSubmit}>

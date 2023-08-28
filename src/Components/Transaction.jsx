@@ -1,14 +1,16 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 
 const Transaction = () => {
   const { type } = useParams();
+  const localData = JSON.parse(localStorage.getItem("user"))
 
   const [formData, setFormData] = useState({
-    type: "",
-    from_acc: 0,
+    type: "IMPS",
+    from_acc: localData ? localData.accNo : "",
     to_acc: 0,
     amount: 0,
     date: "",
@@ -23,12 +25,14 @@ const Transaction = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name,value, "filedssssssssss")
+    console.log(name,value)
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,24 +74,32 @@ const Transaction = () => {
       .then((response) => {
         //do something awesome that makes the world a better place
         console.log(response, "transaction post done");
-      });
+        toast.success("Successful transaction")
+        setFormData({
+          type: "IMPS",
+          from_acc: localData ? localData.accNo : "",
+          to_acc: 0,
+          amount: 0,
+          date: "",
+          maturity: "",
+          remark: "",
+          trans_pass: ""
+        })
+        navigate("/home")
+      })
+      .catch((err) => {
+        toast.error("Trouble requesting transaction")
+        navigate("/home")
+      })
     console.log(transactionType);
   }
 
   return (
     <div>
-      <div>
-        <div><h1 style={{ textAlign: "center", padding: "20px" }}>Transaction</h1></div>
-        <div style={{ padding: "20px" }}>
-          <h4>Name : { }</h4>
-          <h4>Account no : { }</h4>
-        </div>
-      </div>
-
       <div className="wrapper">
         <Card style={{ width: "600px" }}>
           <Card.Body>
-            <Card.Title style={{ textAlign: "center", padding: "15px" }}>Register for Internet Banking</Card.Title>
+            <Card.Title style={{ textAlign: "center", padding: "15px" }}>Transaction form</Card.Title>
             <Form onSubmit={handleSubmit}>
               <div className="form-group" >
                 {/* <label htmlFor="selectField">Select transaction type :</label> */}
@@ -126,6 +138,7 @@ const Transaction = () => {
                     value={formData.from_acc}
                     onChange={handleChange}
                     required
+                    disabled
                   />
                 </Form.Group>
               </Col>

@@ -17,26 +17,38 @@ import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
 import Admin from './Components/Admin';
+import SetPassword from './Components/SetPassword';
 import AdminSearch from './Components/AdminSearch';
 import TransactionSearch from './Components/TransactionSearch';
 import AdminHome from './Components/AdminHome';
 
 function App() {
-  localStorage.setItem("token", "123");
+  localStorage.setItem("token", "null"); // jwt auth token
+  localStorage.setItem("type", "customer"); //type of user
 
   return (
     <div className='main'>
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/adminlogin" element={<AdminLogin />} /> 
-        <Route path="/admin" element={<AdminHome/>} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route 
+          path="/home" 
+          element={
+            <PrivateRoute routeType={"customer"}>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/admin" 
+          element={
+            <PrivateRoute routeType={"admin"}>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
         <Route path="/forgotpw" element={<ForgotPassword />} />
-        <Route path="/transaction" element={<Transaction />} />
-        <Route path="/history" element={<TransactionHistory />} />
-        <Route path="/user" element={<UserDetails />} />
         <Route path="/registeracc" element={<RegisterAccount />} />
         <Route path="/signup" element={<SignUp />} />
 

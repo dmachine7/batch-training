@@ -7,9 +7,15 @@ import TransactionHistory from "./TransactionHistory";
 import Transaction from "./Transaction";
 import RegisterAccount from "./RegisterAccount";
 import Service from "./Service";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [component, setComponent] = useState("dashboard")
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    navigate("/")
+  }
 
   return (
     <div>
@@ -21,13 +27,10 @@ const Home = () => {
             <Nav.Link onClick={() => setComponent("history")}>Transaction History</Nav.Link>
             <Nav.Link onClick={() => setComponent("transaction")}>Payment</Nav.Link>
             <Nav.Link onClick={() => setComponent("self")}>Withdraw / Deposit</Nav.Link>
-            <Nav.Link onClick={() => setComponent("register")}>Net Banking</Nav.Link>
-
+            {/* <Nav.Link onClick={() => setComponent("register")}>Net Banking</Nav.Link> */}
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>Signed in as: Devang</Navbar.Text>
-          </Navbar.Collapse>
         </Container>
       </Navbar>
       <div>

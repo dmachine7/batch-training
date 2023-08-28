@@ -27,7 +27,7 @@ const TransactionTable = ({transactions}) => {
                   <td>{trans.rec_acc}</td>
                   <td>{trans.trans_type}</td>
                   <td>{trans.payment_mode}</td>
-                  <td>{trans.date}</td>
+                  <td>{trans.date.substring(0,10)}</td>
                   <td>{trans.amount}</td>
                   <td>{trans.remarks}</td>
                   {/* <td>{trans.maturity_ins}</td> */}
