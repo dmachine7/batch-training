@@ -22,9 +22,13 @@ const Login = () => {
         "password": password
     }
     axios.post(url, data).then((res) => {
+      console.log(res)
         localStorage.setItem("token", res.data.jwtToken)
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(JSON.parse(localStorage.getItem("user")));
         navigate("/home");
-    });
+    })
+    .catch((err) => toast.error("Invalid credentials"));;
   };
 
   const handleSubmit = (e) => {

@@ -16,6 +16,7 @@ import RegisterAccount from './Components/RegisterAccount';
 import PrivateRoute from './Components/PrivateRoute';
 import AdminLogin from './Components/AdminLogin';
 import SignUp from './Components/SignUp';
+import Admin from './Components/Admin';
 import SetPassword from './Components/SetPassword';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
           path="/admin" 
           element={
             <PrivateRoute routeType={"admin"}>
-              <Dashboard />
+              <Admin />
             </PrivateRoute>
           }
         />
