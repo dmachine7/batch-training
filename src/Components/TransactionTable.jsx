@@ -2,9 +2,12 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 
 const TransactionTable = ({transactions}) => {
+  console.log(transactions.length);
   return (
-    // <div>
-    <Table striped bordered hover style={{ margin: "1rem" }}>
+    <div>
+    {transactions.length ==0 ? <p style={{margin: "0px auto ", fontSize: "20p"}}>No Transactions yet</p> :
+          <Table striped bordered hover style={{ margin: "1rem" }}>
+
           <thead class="thead-dark">
             <tr>
               <th scope="col">Transaction Id</th>
@@ -36,7 +39,8 @@ const TransactionTable = ({transactions}) => {
 
           </tbody>
         </Table>
-    // </div>
+   }
+ </div>
   )
 }
 

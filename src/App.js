@@ -44,7 +44,7 @@ function App() {
           path="/admin" 
           element={
             <PrivateRoute routeType={"admin"}>
-              <Admin />
+              <AdminHome />
             </PrivateRoute>
           }
         />
