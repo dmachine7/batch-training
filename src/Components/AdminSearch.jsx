@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 
 const AdminSearch = () => {
@@ -26,7 +26,6 @@ const AdminSearch = () => {
 	const handleSearch = (e) => {
 		const searchTerm = e.target.value;
 		setAccNo(searchTerm);
-		console.log(searchTerm);
 
 		const filteredUsers = users.filter(user =>
 			user.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -37,7 +36,6 @@ const AdminSearch = () => {
 
 	useEffect(() => {
 		getUsers();
-		console.log(users)
 	}, [])
 
 	return (

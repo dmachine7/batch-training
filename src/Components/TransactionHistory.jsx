@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import TransactionTable from './TransactionTable';
-// import Details from './Details';
 import Card from 'react-bootstrap/Card';
 
 
@@ -24,7 +23,6 @@ const TransactionHistory = () => {
 
   useEffect(() => {
     getData();
-    console.log(posts)
   }, []);
   return (
     <div>
@@ -32,9 +30,7 @@ const TransactionHistory = () => {
 
       <div>
         <TransactionTable transactions={posts} />
-
       </div>
-
     </div>
 
   )

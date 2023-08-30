@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom'
 import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { toast } from 'react-toastify';
@@ -21,7 +20,6 @@ const Service = () => {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		console.log(name, value, "filedssssssssss")
 		setFormData((prevData) => ({
 			...prevData,
 			[name]: value,
@@ -31,7 +29,6 @@ const Service = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
 
 		if (formData.amount <= 0) {
 			console.log("fill all the fields");
@@ -48,7 +45,6 @@ const Service = () => {
 				"Content-Type": "application/json"
 			},
 
-			//make sure to serialize your JSON body
 			body: JSON.stringify({
 				"send_acc": formData.from_acc,
 				"rec_acc": formData.to_acc,
@@ -62,8 +58,6 @@ const Service = () => {
 			})
 		})
 			.then((response) => {
-				//do something awesome that makes the world a better place
-				console.log(response, "transaction post done");
 				response.status != 200 ? toast.error("Invalid entry") :
 				toast.success("Successful transaction")
 				setFormData({

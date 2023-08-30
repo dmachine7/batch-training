@@ -38,7 +38,6 @@ const Home = () => {
                   <Nav.Link onClick={() => setComponent("self")}>Withdraw / Deposit</Nav.Link>
                 </> : null
             }
-            {/* <Nav.Link onClick={() => setComponent("register")}>Net Banking</Nav.Link> */}
             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
           <Navbar.Toggle />

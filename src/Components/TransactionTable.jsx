@@ -17,7 +17,6 @@ const TransactionTable = ({transactions}) => {
               <th scope="col">Date</th>
               <th scope="col">Amount</th>
               <th scope="col">Remarks</th>
-              {/* <th scope="col">Maturity Ins</th> */}
             </tr>
           </thead>
           <tbody>
@@ -32,7 +31,6 @@ const TransactionTable = ({transactions}) => {
                   <td>{trans.date.substring(0,10)}</td>
                   <td>{trans.amount}</td>
                   <td>{trans.remarks}</td>
-                  {/* <td>{trans.maturity_ins}</td> */}
                 </tr>
               )
             })}

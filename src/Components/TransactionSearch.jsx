@@ -28,13 +28,11 @@ const TransactionSearch = () => {
     const handleSearch = (e) => {
         const searchTerm = e.target.value;
         setSearchText(searchTerm);
-        console.log(searchTerm, "acc")
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         getTransaction();
-        console.log(posts, "trnas")
     }
 
     return (

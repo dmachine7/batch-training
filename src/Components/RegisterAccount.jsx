@@ -10,7 +10,6 @@ const RegisterAccount = () => {
         confirm_login_pass: "",
         trans_pass: "",
         confirm_trans_pass: "",
-        // otp: "",
     });
 
     const [error, setError] = useState("");
@@ -24,27 +23,21 @@ const RegisterAccount = () => {
     };
 
     const getAccount = (acc_no) => {
-        console.log(acc_no);
-        // var requestOptions = {
-        //   method: "GET",
-        //   redirect: "follow",
-        //   headers: {"Content-Type": "application/json"}
-        // };
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+          headers: {"Content-Type": "application/json"}
+        };
 
-        // fetch("localhost://8080/api/account/id", requestOptions)
-        //   .then((response) => response.json())
-        //   .then((result) => setDetails(result))
-        //   .catch((error) => console.log("error", error));
-        //   console.log(details,"account details");
+        fetch("localhost://8080/api/account/id", requestOptions)
+          .then((response) => response.json())
+          .then((result) => setDetails(result))
+          .catch((error) => console.log("error", error));
+          console.log(details,"account details");
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if(formData.acc_no == "" || formData.login_pass== "" || formData.confirm_login_pass == "" || formData.trans_pass == "" ||
-        //  formData.confirm_trans_pass == "") {
-        //     console.log("fill all the fields");
-        //     return;
-        //  }
 
         if (formData.login_pass !== formData.confirm_login_pass) {
             setError("login password does not match");
@@ -57,8 +50,6 @@ const RegisterAccount = () => {
             return;
         }
         setError("");
-        console.log(formData, "user");
-        // getAccount(formData.acc_no);
         console.log(formData.acc_no);
         var requestOptions = {
             method: "GET",
@@ -76,7 +67,6 @@ const RegisterAccount = () => {
         console.log(formData.acc_no, details.acc_no);
 
         if (formData.acc_no == details.acc_no) {
-            // var requestOptions = 
             console.log("im in")
             fetch("http://localhost:8080/api/account/sendData", {
                 method: "POST",
@@ -85,7 +75,7 @@ const RegisterAccount = () => {
                     "Content-Type": "application/json"
                 },
 
-                //make sure to serialize your JSON body
+                 
                 body: JSON.stringify({
                     "acc_no" : formData.acc_no,
                     "log_pass": formData.login_pass,
@@ -95,14 +85,9 @@ const RegisterAccount = () => {
                 })
             })
                 .then((response) => {
-                    //do something awesome that makes the world a better place
-                    console.log(response,"post done");
+                                  console.log(response,"post done");
                 });
         }
-
-
-        // localhost://8080/api/account/id
-
     };
     return (
         <div className="wrapper">
@@ -110,7 +95,6 @@ const RegisterAccount = () => {
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center", padding: "15px" }}>Register for Internet Banking</Card.Title>
                     <Form onSubmit={handleSubmit}>
-                        {/* <Row> */}
                         <Col>
                             <Form.Group className="mb-3" controlId="acc_no">
                                 <Form.Label>Account Number</Form.Label>
@@ -137,7 +121,6 @@ const RegisterAccount = () => {
                                 />
                             </Form.Group>
                         </Col>
-                        {/* </Row> */}
 
                         <Form.Group className="mb-3" controlId="confirm_login_pass">
                             <Form.Label>Confirm Login Password</Form.Label>

@@ -2,7 +2,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 const Transaction = () => {
   const { type } = useParams();
@@ -25,7 +24,6 @@ const Transaction = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name,value)
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -36,10 +34,7 @@ const Transaction = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   "type": transactionType,
-    // }));
+    
 
     console.log(formData);
 
@@ -56,37 +51,12 @@ const Transaction = () => {
     }
     setError("");
 
-    // const obj = JSON.stringify({
-    //   "send_acc":  formData.from_acc, 
-    //   "rec_acc":  formData.to_acc,
-    //   "trans_pass": formData.trans_pass,
-    //   "date": formData.date,
-    //   "amount": formData.amount,
-    //   "remarks": formData.remark,
-    //   "maturity_ins": formData.maturity,
-    // })
-    
-    // const params= {
-    //   "password" :formData.trans_pass
-    // }
-
-    // const headers = {
-    //   "Content-Type": "application/json"
-    // }
-
-    // const response =async () => {
-    //  const res = await axios.post("http://localhost:8080/api/transaction/sendData",obj,{params, headers})
-    //  console.log(res,"ressssss")
-    // }
-
-
     fetch("http://localhost:8080/api/transaction/sendData", {
       method: "POST",
       redirect: "follow",
       headers: {
         "Content-Type": "application/json"
       },
-    //   //make sure to serialize your JSON body
       body: JSON.stringify({
         trans_type: formData.type,
         send_acc:  formData.from_acc, 
@@ -98,8 +68,6 @@ const Transaction = () => {
       })
     })
       .then((response) => {
-        //do something awesome that makes the world a better place
-        console.log(response, "transaction post done");
         response.status != 200 ? toast.error("Invalid entry") :
 				toast.success("Successful transaction")
         setFormData({
@@ -118,7 +86,6 @@ const Transaction = () => {
         toast.error("Trouble requesting transaction")
         navigate("/home")
       })
-    // console.log(transactionType);
   }
 
   return (
@@ -129,21 +96,7 @@ const Transaction = () => {
             <Card.Title style={{ textAlign: "center", padding: "15px" }}>Transaction form</Card.Title>
             <Form onSubmit={handleSubmit}>
               <div className="form-group" >
-                {/* <label htmlFor="selectField">Select transaction type :</label> */}
-                {/* <select
-                  className="form-control"
-                  id="selectField"
-                  value={transactionType}
-                  onChange={(e) => {
-                    setTransactionType(e.target.value);
-                    console.log(e.target.value);
-                  }}
-                >
-                  <option value="">Select...</option>
-                  <option value="IMPS">IMPS</option>
-                  <option value="NEFT">NEFT</option>
-                  <option value="RTGS">RTGS</option>
-                </select> */}
+              
                 <Form.Group
                   className="mb-3" controlId="type">
                   <Form.Label>Select Transaction type </Form.Label>
